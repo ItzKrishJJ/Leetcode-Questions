@@ -34,7 +34,6 @@ class Solution {
             curr = curr.next;
             curridx++;
         }
-
         if(prev_critical !=null && !prev_critical.equals(first_critical))
         {
             res[1] = prev_critical - first_critical;
