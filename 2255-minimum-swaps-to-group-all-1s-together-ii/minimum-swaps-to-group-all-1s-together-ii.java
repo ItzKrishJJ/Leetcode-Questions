@@ -1,16 +1,32 @@
 class Solution {
     public int minSwaps(int[] nums) {
-        int k = Arrays.stream(nums).sum();
         int n = nums.length;
-        int cnt = 0;
-        for (int i = 0; i < k; ++i) {
-            cnt += nums[i];
+        int totalOnes = 0;
+
+        // Count total number of 1's
+        for (int num : nums) {
+            totalOnes += num;
         }
-        int mx = cnt;
-        for (int i = k; i < n + k; ++i) {
-            cnt += nums[i % n] - nums[(i - k + n) % n];
-            mx = Math.max(mx, cnt);
+
+        // Edge cases
+        if (totalOnes == 0 || totalOnes == n) return 0;
+
+        int currentOnes = 0;
+
+        // Count 1's in the first window of size totalOnes
+        for (int i = 0; i < totalOnes; i++) {
+            currentOnes += nums[i];
         }
-        return k - mx;
+
+        int maxOnes = currentOnes;
+
+        // Use two pointers to slide the window
+        for (int i = 0; i < n; i++) {
+            currentOnes -= nums[i];
+            currentOnes += nums[(i + totalOnes) % n];
+            maxOnes = Math.max(maxOnes, currentOnes);
+        }
+
+        return totalOnes - maxOnes;
     }
 }
