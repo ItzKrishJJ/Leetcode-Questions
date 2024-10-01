@@ -1,0 +1,19 @@
+class Solution {
+    public int countCompleteDayPairs(int[] hours) {
+        int n = hours.length;
+        int arr[] = new int[n];
+        int count = 0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                if(hours[i]>0 && hours[j]>0 && (hours[i]+hours[j])%24==0)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+
+    }
+}
