@@ -22,11 +22,11 @@ class Solution {
             mymap.put(newarr[i], rank);
         }
         
-        int rankarr[] = new int[n];
+      
         for (int i = 0; i < n; i++) {
-            rankarr[i] = mymap.get(arr[i]);
+            newarr[i] = mymap.get(arr[i]);
         }
         
-        return rankarr;
+        return newarr;
     }
 }
